@@ -1,0 +1,26 @@
+﻿@using EventsApp.Models;
+@model EventsApp.Models.NavigationMenuItem;
+
+
+<h1>vdsvklj</h1>
+
+<h4><a href="@Model.Url">@Model.Title</a></h4>
+<div class="sidebar sidebar-static">
+    @RenderMenu(Model)
+</div>
+
+@helper RenderMenu(NavigationMenuItem navMenu)
+{
+    if (navMenu.Children != null)
+    {
+        <ul class="nav nav-pills nav-stacked">
+            @foreach (var menuItem in navMenu.Children)
+            {
+                <li class="@(menuItem.Children!=null? "open": "")">
+                    <a href="@menuItem.Url">@menuItem.Title</a>
+                    @RenderMenu(menuItem)
+                </li>
+            }
+        </ul>
+    }
+}
