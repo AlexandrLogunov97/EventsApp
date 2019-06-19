@@ -17,7 +17,6 @@ namespace EventsApp
        
         public EventsServicesConfigurator()
         {
-            var a = 1;
         }
         public void Configure(IServiceCollection serviceCollection)
         {

@@ -13,13 +13,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/14/2019 00:32:42</publishTime>
     </File>
     <File Include="App_Config/Include/TAC/Events/Events.DefaultIndexConfiguration.config">
-      <publishTime>06/17/2019 01:49:23</publishTime>
+      <publishTime>06/18/2019 05:12:14</publishTime>
     </File>
     <File Include="App_Config/Include/TAC/Events/events.site.config">
       <publishTime>06/12/2019 01:33:48</publishTime>
     </File>
     <File Include="App_Config/Include/TAC/Events/Solr.Events.Master.Index.config">
-      <publishTime>06/17/2019 01:49:02</publishTime>
+      <publishTime>06/18/2019 04:58:05</publishTime>
     </File>
     <File Include="App_Config/Include/TAC/Events/Solr.Events.Web.Index.config">
       <publishTime>06/17/2019 00:33:04</publishTime>
@@ -28,10 +28,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2019 01:33:48</publishTime>
     </File>
     <File Include="bin/EventsApp.dll">
-      <publishTime>06/16/2019 23:52:41</publishTime>
+      <publishTime>06/19/2019 01:00:34</publishTime>
     </File>
     <File Include="bin/EventsApp.pdb">
-      <publishTime>06/16/2019 23:52:41</publishTime>
+      <publishTime>06/19/2019 01:00:34</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>05/24/2018 13:38:22</publishTime>
@@ -235,10 +235,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/04/2019 23:53:29</publishTime>
     </File>
     <File Include="bin/TAC.Sitecore.Abstractions.dll">
-      <publishTime>06/14/2019 01:12:58</publishTime>
+      <publishTime>06/19/2019 01:00:33</publishTime>
     </File>
     <File Include="bin/TAC.Sitecore.Abstractions.pdb">
-      <publishTime>06/14/2019 01:12:58</publishTime>
+      <publishTime>06/19/2019 01:00:33</publishTime>
+    </File>
+    <File Include="bin/TAC.Utils.dll">
+      <publishTime>08/24/2017 23:14:00</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>06/05/2019 06:55:09</publishTime>
@@ -606,6 +609,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/EventList/Index.cshtml">
       <publishTime>06/06/2019 00:25:29</publishTime>
     </File>
+    <File Include="Views/Eventslist/Index.cshtml">
+      <publishTime>06/19/2019 01:03:56</publishTime>
+    </File>
     <File Include="Views/Navigation/Index.cshtml">
       <publishTime>06/11/2019 00:03:38</publishTime>
     </File>
@@ -646,7 +652,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2019 02:48:13</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/14/2019 01:13:13</publishTime>
+      <publishTime>06/19/2019 01:00:39</publishTime>
     </File>
   </ItemGroup>
 </Project>

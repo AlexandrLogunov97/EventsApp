@@ -79,3 +79,5 @@ C:\Users\SC\Desktop\EventsApp\EventsApp\EventsApp\obj\Debug\EventsApp.csproj.Cor
 C:\Users\SC\Desktop\EventsApp\EventsApp\EventsApp\obj\Debug\EventsApp.csproj.CopyComplete
 C:\Users\SC\Desktop\EventsApp\EventsApp\EventsApp\obj\Debug\EventsApp.dll
 C:\Users\SC\Desktop\EventsApp\EventsApp\EventsApp\obj\Debug\EventsApp.pdb
+C:\Users\SC\Desktop\EventsApp\EventsApp\EventsApp\obj\Debug\EventsApp.dll.config
+C:\Users\SC\Desktop\EventsApp\EventsApp\EventsApp\bin\TAC.Utils.dll
