@@ -9,12 +9,13 @@ namespace EventsApp.Controllers
 {
     public class NavigationController : Controller
     {
-        NavigationBuilder builder;
+        INavigationBuilder builder;
         //public NavigationController(): this(new NavigationBuilder())
         //{
 
         //}
-        public NavigationController(NavigationBuilder builder)
+
+        public NavigationController(INavigationBuilder builder)
         {
             this.builder = builder;
         }

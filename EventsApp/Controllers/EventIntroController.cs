@@ -11,6 +11,10 @@ namespace EventsApp.Controllers
 {
     public class EventIntroController : Controller
     {
+        public EventIntroController()
+        {
+
+        }
         private static EventIntro CreateIventIntro()
         {
             var item = RenderingContext.Current.ContextItem;

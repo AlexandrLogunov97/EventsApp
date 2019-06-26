@@ -1,34 +1,27 @@
 ﻿using EventsApp.Models;
+using Sitecore.Mvc.Presentation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using TAC.Sitecore.Abstractions.Interfaces;
-using TAC.Sitecore.Abstractions.SitecoreImplementation;
+using EventsApp.Utils;
 
 namespace EventsApp.Business
 {
-    public class RelatedEventsProvider
+    public class RelatedEventsProvider: IRelatedEventsProvider
     {
-        IRenderingContext context;
-        public RelatedEventsProvider(): this(SitecoreRenderingContext.Create())
+        RenderingContext renderingContext;
+        public RelatedEventsProvider()
         {
-            
-        }
-        public RelatedEventsProvider(IRenderingContext context)
-        {
-            this.context = context;
+            this.renderingContext = RenderingContext.Current;
         }
         public IEnumerable<NavigationItem> GetRelatedEvents()
         {
-            return context.ContextItem
+            return renderingContext.ContextItem
                 .GetMultilistFieldItems("ReletedEvents")
                 .Select(i =>
-                new NavigationItem
-                (
-                    title: i.DisplayName,
-                    url: i.Url
-                ));
+                    new NavigationItem(i.DisplayName, i.GetUrl() )
+                );
         }
     }
 }

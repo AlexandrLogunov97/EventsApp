@@ -1,4 +1,5 @@
 ﻿using EventsApp.Business;
+using Sitecore.Mvc.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,21 +10,16 @@ namespace EventsApp.Controllers
 {
     public class BreadcrumbController : Controller
     {
-        private readonly BreadcrumbBuilder builder;
-        // GET: Breadcrumb
-        public BreadcrumbController(): this(new BreadcrumbBuilder())
-        {
+        private readonly IBreadcrumbBuilder _builder;
 
-        }
-
-        public BreadcrumbController(BreadcrumbBuilder builder)
+        public BreadcrumbController(IBreadcrumbBuilder builder)
         {
-            this.builder = builder;
+            _builder = builder;
         }
 
         public ActionResult Index()
         {
-            return View(builder.Build());
+            return View(_builder.Build());
         }
     }
 }

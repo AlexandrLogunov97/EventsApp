@@ -5,12 +5,22 @@ using System.Web;
 
 namespace EventsApp.Models
 {
-    public class NavigationMenuItem:NavigationItem
+    public class NavigationMenuItem : NavigationItem,ICloneable
     {
-        public IEnumerable<NavigationMenuItem> Children { get; private set; }
+        public List<NavigationMenuItem> Children { get; set; }
+        public NavigationMenuItem Parent { get; set; }
+        public NavigationMenuItem()
+        {
+            Children = new List<NavigationMenuItem>();
+        }
         public NavigationMenuItem(string title, string url, IEnumerable<NavigationMenuItem> children) : base(title, url, false)
         {
-            Children = children;
+            Children = children?.ToList();
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 }

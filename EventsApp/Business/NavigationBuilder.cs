@@ -1,43 +1,64 @@
 ﻿using EventsApp.Models;
+using Sitecore.Mvc.Presentation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using TAC.Sitecore.Abstractions.Interfaces;
 using TAC.Sitecore.Abstractions.SitecoreImplementation;
+using EventsApp.Utils;
+using Sitecore.Data.Items;
+using Sitecore.Collections;
+using Sitecore.Data.Fields;
 
 namespace EventsApp.Business
 {
-    public class NavigationBuilder
+    public class NavigationBuilder : INavigationBuilder
     {
-        readonly IRenderingContext context;
-        public NavigationBuilder(): this(SitecoreRenderingContext.Create())
+        readonly RenderingContext renderingContext;
+        public NavigationBuilder()
         {
-
-        }
-        public NavigationBuilder(IRenderingContext context)
-        {
-            this.context = context;
+            this.renderingContext = RenderingContext.Current;
         }
         public NavigationMenuItem Build()
         {
-            var root = context?.DatasourceOrContextItem;
-            return new NavigationMenuItem
+            var root = renderingContext?.GetDatasourceOrContextItem();
+            var items = new List<NavigationMenuItem>();
+
+            Build(root, items, null);
+
+            var navigationMenuItem = new NavigationMenuItem
             (
                 title: root?.DisplayName,
-                url: root?.Url,
-                children: root != null && context?.ContextItem != null ? Build(root, context.ContextItem): null
+                url: root?.GetUrl(),
+                children: root != null && renderingContext?.ContextItem != null ? items : null
             );
+            return navigationMenuItem;
         }
-        private IEnumerable<NavigationMenuItem> Build(IItem node,IItem current)
+
+        private void Build(Item node, List<NavigationMenuItem> items, NavigationMenuItem previousNode)
         {
-            return node.GetChildren().Select(i =>
-            new NavigationMenuItem
-            (
-                title: i.DisplayName,
-                url: i.Url,
-                children: i.IsAncestorOrSelf(current)? Build(i, current): null
-            ));
+            if (Navigation.IsNavigationItem(node))
+            {
+                var navitem = new NavigationMenuItem(node.DisplayName, node.GetUrl(), new List<NavigationMenuItem>());
+                CheckboxField isExcludeFromNavigation = node.GetCheckBoxItem("ExcludeFromNavigation");
+                if (!isExcludeFromNavigation.Checked)
+                {
+                    if (node.HasChildren)
+                    {
+                        previousNode = navitem;
+                        items.Add((NavigationMenuItem)previousNode.Clone());
+                    }
+                    else
+                    {
+                        previousNode.Children.Add(navitem);
+                    }
+                }
+            }
+            node.GetChildren().ToList().ForEach(i =>
+            {
+                Build(i, previousNode.Children, previousNode);
+            });
         }
     }
 }

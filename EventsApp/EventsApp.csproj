@@ -87,6 +87,10 @@
   <ItemGroup>
     <Compile Include="Business\BreadcrumbBuilder.cs" />
     <Compile Include="Business\EventsProvider.cs" />
+    <Compile Include="Business\IBreadcrumbBuilder.cs" />
+    <Compile Include="Business\IEventsProvider.cs" />
+    <Compile Include="Business\INavigationBuilder.cs" />
+    <Compile Include="Business\IRelatedEventsProvider.cs" />
     <Compile Include="Business\NavigationBuilder.cs" />
     <Compile Include="Business\RelatedEventsProvider.cs" />
     <Compile Include="Controllers\BreadcrumbController.cs" />
@@ -102,6 +106,11 @@
     <Compile Include="Models\NavigationItem.cs" />
     <Compile Include="Models\NavigationMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceCollectionExtensions.cs" />
+    <Compile Include="Utils\EventsHelper.cs" />
+    <Compile Include="Utils\ItemExtensions.cs" />
+    <Compile Include="Utils\Navigation.cs" />
+    <Compile Include="Utils\RenderingContextExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -179,7 +188,7 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Config\Include\TAC\Events\di.services.config">
+    <Content Include="App_Config\Include\TAC\Events\a.di.services.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Config\Include\TAC\Events\Events.DefaultIndexConfiguration.config">
@@ -191,6 +200,7 @@
     <Content Include="App_Config\Include\TAC\Events\Solr.Events.Web.Index.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Config\Include\TAC\Events\custom.settings.config" />
     <None Include="packages.config" />
     <Content Include="Css\addition.css" />
     <Content Include="Css\bower_components\bootstrap-sass\assets\fonts\bootstrap\glyphicons-halflings-regular.svg" />

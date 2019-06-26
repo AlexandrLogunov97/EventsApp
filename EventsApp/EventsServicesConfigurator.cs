@@ -9,21 +9,22 @@ using EventsApp.Business;
 using TAC.Sitecore.Abstractions.Interfaces;
 using TAC.Sitecore.Abstractions.SitecoreImplementation;
 using Sitecore.DependencyInjection;
+using System.Web.Mvc;
+using Sitecore.Diagnostics;
+using EventsApp.Controllers;
 
 namespace EventsApp
 {
     public class EventsServicesConfigurator: IServicesConfigurator
     {
-       
-        public EventsServicesConfigurator()
-        {
-        }
         public void Configure(IServiceCollection serviceCollection)
         {
-
-            serviceCollection.AddTransient<NavigationBuilder, NavigationBuilder>();
-            serviceCollection.AddTransient<BreadcrumbBuilder, BreadcrumbBuilder>();
-            serviceCollection.AddTransient<IRenderingContext,SitecoreRenderingContext>();
+            serviceCollection.AddMvcControllersInCurrentAssembly();
+            serviceCollection.AddSingleton<INavigationBuilder, NavigationBuilder>();// (typeof(INavigationBuilder), typeof(NavigationBuilder));
+            serviceCollection.AddSingleton<IBreadcrumbBuilder, BreadcrumbBuilder>();// (typeof(IBreadcrumbBuilder), typeof(BreadcrumbBuilder));
+            serviceCollection.AddSingleton<IRelatedEventsProvider, RelatedEventsProvider>();// (typeof(IRelatedEventsProvider), typeof(RelatedEventsProvider));
+            serviceCollection.AddSingleton<IEventsProvider, EventsProvider>();// (typeof(IRelatedEventsProvider), typeof(EventsProvider));
+            serviceCollection.AddSingleton<IRenderingContext, SitecoreRenderingContext>();// (typeof(IRenderingContext), typeof(SitecoreRenderingContext));
         }
     }
 }

@@ -10,12 +10,13 @@ namespace EventsApp.Controllers
     public class EventsListController : Controller
     {
         // GET: Eventslist
-        private readonly EventsProvider provider;
-        public EventsListController():this(new EventsProvider())
-        {
+        private readonly IEventsProvider provider;
+        //public EventsListController():this(new EventsProvider())
+        //{
 
-        }
-        public EventsListController(EventsProvider provider)
+        //}
+
+        public EventsListController(IEventsProvider provider)
         {
             this.provider = provider;
         }

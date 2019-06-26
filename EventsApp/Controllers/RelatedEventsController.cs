@@ -9,12 +9,13 @@ namespace EventsApp.Controllers
 {
     public class RelatedEventsController : Controller
     {
-        RelatedEventsProvider provider;
-        public RelatedEventsController() : this(new RelatedEventsProvider())
-        {
+        IRelatedEventsProvider provider;
+        //public RelatedEventsController() : this(new RelatedEventsProvider())
+        //{
 
-        }
-        public RelatedEventsController(RelatedEventsProvider relatedEvents)
+        //}
+
+        public RelatedEventsController(IRelatedEventsProvider relatedEvents)
         {
             this.provider = relatedEvents;
         }

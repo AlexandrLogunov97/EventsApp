@@ -3,45 +3,38 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using TAC.Sitecore.Abstractions.Interfaces;
-using TAC.Sitecore.Abstractions.SitecoreImplementation;
+
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Sitecore.Data.Fields;
+using Sitecore.Data.Items;
+using Sitecore.Mvc.Presentation;
+using EventsApp.Utils;
+using Sitecore.Data;
+using Sitecore;
 
 namespace EventsApp.Business
 {
-    public class BreadcrumbBuilder
+    public class BreadcrumbBuilder : IBreadcrumbBuilder
     {
-        readonly IRenderingContext context;
-        public BreadcrumbBuilder() : this(SitecoreRenderingContext.Create())
+        readonly RenderingContext renderingContext;
+        public BreadcrumbBuilder()
         {
+            this.renderingContext = RenderingContext.Current;
+        }
 
-        }
-        public BreadcrumbBuilder(IRenderingContext context)
-        {
-            this.context = context;
-        }
         public IEnumerable<NavigationItem> Build()
         {
-            return context?.HomeItem == null || context?.HomeItem == null ?
+            var homeItem = Sitecore.Context.Database.GetItem(Context.Site.StartPath);
+            return homeItem == null ?
                 Enumerable.Empty<NavigationItem>() :
-                context
+                renderingContext
                 .ContextItem
                 .GetAncestors()
-                .Where(i => context.HomeItem.IsAncestorOrSelf(i))
-                .Select(i => new NavigationItem(
-                    title: i.DisplayName,
-                    url: i.Url,
-                    active: false
-                    ))
+                .Where(i => homeItem.IsAncestorOrSelf(i) && Navigation.IsNavigationItem(i))
+                .Select(i => new NavigationItem(i.DisplayName, i.GetUrl(), false))
                 .Concat(
-                    new[]
-                    {
-                        new NavigationItem
-                        (
-                            title: context.ContextItem.DisplayName,
-                            url: context.ContextItem.Url,
-                            active: true
-                            )
-                    }
+                    new[]{
+                        new NavigationItem(renderingContext.ContextItem.DisplayName, renderingContext.ContextItem.GetUrl(), true)}
                     );
 
         }

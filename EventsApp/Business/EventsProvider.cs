@@ -9,7 +9,7 @@ using System.Web;
 
 namespace EventsApp.Business
 {
-    public class EventsProvider
+    public class EventsProvider: IEventsProvider
     {
         private const int PageSize = 4;
         public EventsList GetEventsList(int pageNo)
@@ -25,7 +25,7 @@ namespace EventsApp.Business
                     .GetResults();
                 return new EventsList()
                 {
-                    Events = results.Hits.Select(h => h.Document).ToArray(),
+                    Events = results.Hits .Select(h => h.Document).ToArray(),
                     PageSize = PageSize,
                     TotalResultCount = results.TotalSearchResults
                 };

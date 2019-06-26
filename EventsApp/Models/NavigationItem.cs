@@ -10,6 +10,10 @@ namespace EventsApp.Models
         public string Title { get; set; }
         public string Url { get; set; }
         public bool Active { get; set; }
+        public NavigationItem()
+        {
+
+        }
         public NavigationItem(string title, string url, bool active=false)
         {
             this.Title = title;
