@@ -41,13 +41,14 @@ namespace EventsApp.Business
             if (Navigation.IsNavigationItem(node))
             {
                 var navitem = new NavigationMenuItem(node.DisplayName, node.GetUrl(), new List<NavigationMenuItem>());
-                CheckboxField isExcludeFromNavigation = node.GetCheckBoxItem("ExcludeFromNavigation");
-                if (!isExcludeFromNavigation.Checked)
+                bool isExcludeFromNavigation = ((CheckboxField)node.Fields["ExcludeFromNavigation"]).Checked;
+                if (isExcludeFromNavigation || previousNode.IsExcludeFromNavigation)
                 {
                     if (node.HasChildren)
                     {
                         previousNode = navitem;
-                        items.Add((NavigationMenuItem)previousNode.Clone());
+                        previousNode.IsExcludeFromNavigation = isExcludeFromNavigation;
+                        items.Add(previousNode);
                     }
                     else
                     {
@@ -55,10 +56,7 @@ namespace EventsApp.Business
                     }
                 }
             }
-            node.GetChildren().ToList().ForEach(i =>
-            {
-                Build(i, previousNode.Children, previousNode);
-            });
+            node.GetChildren().ToList().ForEach(i => Build(i, previousNode.Children, previousNode));
         }
     }
 }

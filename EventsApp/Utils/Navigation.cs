@@ -9,9 +9,13 @@ namespace EventsApp.Utils
 {
     public static class Navigation
     {
+        static string navigationTemplateID=string.Empty;      
+        static Navigation()
+        {
+            navigationTemplateID = Sitecore.Configuration.Settings.GetSetting("NavigationTemplateID");
+        }
         public static bool IsNavigationItem(Item item)
         {
-            var navigationTemplateID = Sitecore.Configuration.Settings.GetSetting("NavigationTemplateID");
             return item.ContainsTemplate(new ID(navigationTemplateID));
         }
     }

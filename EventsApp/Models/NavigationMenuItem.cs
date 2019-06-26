@@ -9,6 +9,7 @@ namespace EventsApp.Models
     {
         public List<NavigationMenuItem> Children { get; set; }
         public NavigationMenuItem Parent { get; set; }
+        public bool IsExcludeFromNavigation { get; set; }
         public NavigationMenuItem()
         {
             Children = new List<NavigationMenuItem>();

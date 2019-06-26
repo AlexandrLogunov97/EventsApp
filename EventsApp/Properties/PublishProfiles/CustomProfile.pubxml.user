@@ -34,10 +34,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2019 01:33:48</publishTime>
     </File>
     <File Include="bin/EventsApp.dll">
-      <publishTime>06/26/2019 02:16:01</publishTime>
+      <publishTime>06/26/2019 02:40:20</publishTime>
     </File>
     <File Include="bin/EventsApp.pdb">
-      <publishTime>06/26/2019 02:16:01</publishTime>
+      <publishTime>06/26/2019 02:40:20</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>05/24/2018 13:38:22</publishTime>
